@@ -2,6 +2,8 @@ from pymongo import MongoClient
 import os
 import json
 from flask import Flask, request, jsonify
+from services.database.mongodb import save_to_mongodb
+
 
 def getdata_route(collection):
     try:
@@ -12,12 +14,9 @@ def getdata_route(collection):
         else:
             data = request.get_json(force=True)
 
-        result = collection.insert_one(data)
-        return {
-            'success': True,
-            'message': 'Data saved to MongoDB',
-            'document_id': str(result.inserted_id)
-        }, 201 
+        # Save to MongoDB
+        save_result = save_to_mongodb(collection, data)
+        return jsonify(save_result), 201
 
     except Exception as e:
         return jsonify({'error': str(e)}), 400

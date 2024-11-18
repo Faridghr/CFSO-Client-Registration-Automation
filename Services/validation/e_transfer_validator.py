@@ -1,4 +1,4 @@
-from services.ocr import image_To_Text
+from services.ocr.image_to_text import image_To_Text
 from services.email.imapTools import IMAP
 import re
 
