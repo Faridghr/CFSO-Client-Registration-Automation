@@ -1,2 +1,3 @@
 # CFSO-Client-Registration-Automation
-This project focuses on automating the client registration process.
+
+This project focuses on automating the client registration process for the Community Family Services of Ontario (CFSO), a non-profit organization serving East Asian-Ontarians. The existing manual workflow involves verifying Permanent Residency (PR) cards and e-transfer payment screenshots, taking up significant staff time. The proposed solution aims to streamline and automate these processes, reducing staff involvement while maintaining efficiency. Key deliverables include a system to handle registration, PR card verification, payment verification, and automated communication with both staff and clients. The project is planned for completion by November 2024 in three phases: process analysis, proof of concept, and system development.
