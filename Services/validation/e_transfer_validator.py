@@ -1,5 +1,5 @@
-from Services.ocr import image_To_Text
-from Services.email.imapTools import IMAP
+from services.ocr import image_To_Text
+from services.email.imapTools import IMAP
 import re
 
 def validate_e_transfer(payer_full_name, amount_of_payment, e_transfer_file_upload_urls):

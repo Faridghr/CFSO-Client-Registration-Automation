@@ -1,4 +1,4 @@
-from Services.ocr import image_To_Text
+from services.ocr import image_To_Text
 
 
 def validate_pr_card(pr_status, pr_card_number, full_name, pr_file_upload_urls):

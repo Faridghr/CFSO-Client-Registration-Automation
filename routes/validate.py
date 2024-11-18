@@ -1,9 +1,9 @@
 from flask import request, jsonify
-from Services.jotForm.request_processor import process_request_data
-from Services.validation.pr_card_validator import validate_pr_card
-from Services.validation.e_transfer_validator import validate_e_transfer
-from Services.email.email_service import send_email
-from Services.database.mongodb import save_to_mongodb
+from services.jotForm.request_processor import process_request_data
+from services.validation.pr_card_validator import validate_pr_card
+from services.validation.e_transfer_validator import validate_e_transfer
+from services.email.email_service import send_email
+from services.database.mongodb import save_to_mongodb
 
 import json
 

@@ -35,7 +35,6 @@ def main():
     x = {'Health':'True'}
     return x
 
-
 # Register routes
 app.add_url_rule('/', view_func=validate_route(mail, collection), methods=['POST'])
 

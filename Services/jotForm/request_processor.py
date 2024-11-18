@@ -1,5 +1,5 @@
-from Services.jotForm.file_utils import process_file_uploads
-from Services.jotForm.id_extraction import extract_form_id, extract_submission_id
+from services.jotForm.file_utils import process_file_uploads
+from services.jotForm.id_extraction import extract_form_id, extract_submission_id
 
 def process_request_data(data, pr_amount, normal_amount):
     """

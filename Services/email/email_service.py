@@ -1,7 +1,7 @@
 from flask_mail import Message
 import os
 
-error_notification_email_address = os.getenv('ERROR_NOTIFICATION_EMAIL')
+error_notification_email_address = os.getenv('ERROR_NOTIFICATION_EMAIL_RECIEVER')
 
 def send_email(pr_status, mail, res):
     """
@@ -71,6 +71,10 @@ def create_email_message(pr_status, res):
         - Phone Number: {res['Phone_Number']}
 
         Please address these issues as soon as possible.
+
+        The Customer Form Detail: https://www.jotform.com/inbox/{res['Form_ID']}/{res['Submission_ID']}
+
+        Course Table: https://www.jotform.com/tables/{res['Form_ID']}
         """
         recipients = error_notification_email_address
         subject = 'Error in Form Submission - Action Required'
