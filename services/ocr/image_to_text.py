@@ -29,7 +29,7 @@ def image_To_Text_Local_Model(imgURL):
     """
     image = get_image_from_url(imgURL)
 
-    api_url = 'http://54.82.221.104:5000/extract-text'
+    api_url = 'http://54.81.146.167:5000/extract-text'
     
     files = {'file': ('image.jpg', image, 'image/jpeg')}
 
@@ -42,3 +42,4 @@ def image_To_Text_Local_Model(imgURL):
 # url = 'https://www.jotform.com/uploads/javanroodiz/243138058138255/6070135805971446099/card.jpg'
 # print(image_To_Text_Local_Model(url))
 
+# python -m services.ocr
