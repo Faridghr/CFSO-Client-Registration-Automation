@@ -1,7 +1,5 @@
-from pymongo import MongoClient
-import os
 import json
-from flask import Flask, request, jsonify
+from flask import request, jsonify
 from services.database.mongodb import save_to_mongodb
 
 
