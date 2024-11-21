@@ -33,16 +33,18 @@ def validate_route(mail, collection):
         )
         res.update(pr_validation_result)
 
-        # Validate e-transfer
-        e_transfer_validation_result = validate_e_transfer(
-            res.get('Payer_Full_Name'),
-            res.get('Amount_of_Payment'),
-            res.get('E_Transfer_File_Upload_URLs'),
-        )
-        res.update(e_transfer_validation_result)
+        print(res) #TEST
 
-        # Send email
-        send_email(res.get('PR_Status'), mail, res)
+        # # Validate e-transfer
+        # e_transfer_validation_result = validate_e_transfer(
+        #     res.get('Payer_Full_Name'),
+        #     res.get('Amount_of_Payment'),
+        #     res.get('E_Transfer_File_Upload_URLs'),
+        # )
+        # res.update(e_transfer_validation_result)
+
+        # # Send email
+        # send_email(res.get('PR_Status'), mail, res)
 
         # Save to MongoDB
         save_result = save_to_mongodb(collection, res)

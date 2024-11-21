@@ -11,20 +11,20 @@ def process_request_data(data, pr_amount, normal_amount):
     :return: A dictionary with extracted and processed data.
     """
     # Extract personal information
-    full_name = f"{data['q3_fullName3']['first']} {data['q3_fullName3']['last']}"
-    email = data.get("q6_email6")
-    phone_number = data.get("q5_phoneNumber5", {}).get("full")
-    payer_full_name = f"{data['q34_pFull']['first']} {data['q3_fullName3']['last']}"
-    type_of_status = data.get("q36_typeOf")
+    full_name = f"{data['q6_legalName']['first']} {data['q6_legalName']['last']}"
+    email = data.get("q8_email")
+    phone_number = data.get("q9_phoneNumber", {}).get("full")
+    payer_full_name = f"{data['q26_payersName']['first']} {data['q26_payersName']['last']}"
+    type_of_status = data.get("q29_areYou")
 
     # Process file uploads
-    pr_file_upload_urls = process_file_uploads(data, "file_upload")
-    e_transfer_file_upload_urls = process_file_uploads(data, "eFile_upload")
+    pr_file_upload_urls = process_file_uploads(data, "clearFront")
+    e_transfer_file_upload_urls = process_file_uploads(data, "uploadEtransfer")
 
     # Determine payment and PR status
-    if type_of_status == 'Pr [500]':
+    if "Yes I am" in type_of_status:
         pr_status = True
-        pr_card_number = data.get("q33_number")
+        pr_card_number = data.get("q11_prCard")
         amount_of_payment = pr_amount  # Like: 500
     else:
         pr_status = False
