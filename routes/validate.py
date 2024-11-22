@@ -43,10 +43,10 @@ def validate_route(mail, collection):
         )
         res.update(e_transfer_validation_result)
 
-        print(res) #TEST
+        # Send email
+        send_email(res.get('PR_Status'), mail, res)
 
-        # # Send email
-        # send_email(res.get('PR_Status'), mail, res)
+        print(res) #TEST
 
         # Save to MongoDB
         save_result = save_to_mongodb(collection, res)
