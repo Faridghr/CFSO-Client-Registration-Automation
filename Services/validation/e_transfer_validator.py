@@ -40,9 +40,10 @@ def check_eTransfer(payerFullName, amount, imgURL):
     - 'E_Transfer_Success' (bool): True if validation is successful, False otherwise.
     - 'E_Transfer_Error' (str, optional): Error message if validation fails.
     """
+    
     json_res = image_To_Text(imgURL)
 
-    payer_name_list = [name.upper() for name in payerFullName.split(' ')]
+    #payer_name_list = [name.upper() for name in payerFullName.split(' ')]
 
     reference_number_list = []
     reference_pattern = re.compile(r"\b[A-Za-z0-9]{12}\b")
@@ -54,7 +55,7 @@ def check_eTransfer(payerFullName, amount, imgURL):
             reference_number_list.append(text)
     print("E-Transfer Refrence number: ", reference_number_list)
 
-    res = IMAP.find_in_email(reference_number_list, amount)
+    res = IMAP.validator(payerFullName, amount)
     
     print("E-transfer validation response: ", res)
 

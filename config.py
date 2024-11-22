@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Config:
+    INTERAC_EMAIL = os.getenv('INTERAC_EMAIL')
     X_Api_Key = os.getenv('X-Api-Key')
     JOTFORM_API_KEY = os.getenv('JOTFORM_API_KEY')
     MONGO_USERNAME = os.getenv('MONGO_USERNAME')
@@ -13,6 +14,7 @@ class Config:
     AWS_ACCESS_KEY = os.getenv('AWS_ACCESS_KEY')
     AWS_SECRET_KEY = os.getenv('AWS_SECRET_KEY')
     S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
+    S3_FILE_KEY = os.getenv('S3_FILE_KEY')
     SPONSOR_EMAIL_APP_PASSWORD = os.getenv('SPONSOR_EMAIL_APP_PASSWORD')
     SPONSOR_EMAIL_USER = os.getenv('SPONSOR_EMAIL_USER')
     ERROR_NOTIFICATION_EMAIL_RECIEVER = os.getenv('ERROR_NOTIFICATION_EMAIL_RECIEVER')
