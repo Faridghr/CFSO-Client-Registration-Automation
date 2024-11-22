@@ -1,7 +1,9 @@
 from flask_mail import Message
-import os
+from services.openai.openai import OpenAIService
+from services.email.imapTools import IMAP
+from config import Config
 
-error_notification_email_address = os.getenv('ERROR_NOTIFICATION_EMAIL_RECIEVER')
+error_notification_email_address = Config.ERROR_NOTIFICATION_EMAIL_RECIEVER
 
 def send_email(pr_status, mail, res):
     """
@@ -80,3 +82,49 @@ def create_email_message(pr_status, res):
         subject = 'Error in Form Submission - Action Required'
 
     return Message(subject=subject, recipients=[recipients], body=email_body)
+
+
+def create_email_draft(res):
+    try:
+        # Check PR Card validation and create the corresponding message only if PR_Success is False
+        pr_card_validation = ""
+        if res['PR_Success'] == False:
+            pr_card_validation = f"PR Card Validation: {res['PR_Success']} - Error: {res['PR_Error']}"
+
+        # Check E-Transfer validation and create the corresponding message only if E_Transfer_Success is False
+        e_transfer_validation = ""
+        if res['E_Transfer_Success'] == False:
+            e_transfer_validation = f"E-Transfer Validation: {res['E_Transfer_Success']} - Error: {res['E_Transfer_Error']}"
+
+        prompt = f"""
+        Generate a professional email message to inform a customer about issues with their course registration submitted to the Community Family Services of Ontario (CFSO). 
+
+        Use the following details:
+        - Customer Name: {res['Full_Name']}
+        {pr_card_validation}
+        {e_transfer_validation}
+
+        Include the following:
+        1. A polite introduction addressing the customer by name.
+        2. A request for the customer to review and resubmit their form if needed.
+        3. An offer to assist further if they have any questions or concerns.
+
+        Sender Information:
+        1. Jannelle
+        2. Community Family Services of Ontario (CFSO)
+        3. jleung@cfso.care
+        Ensure the output is clear, concise, and customer-friendly. Output only the email content message without "subject" section.
+        """
+        message = OpenAIService.generate_completion(prompt)
+        subject = "Action Required: Issue with Your Course Registration Form"
+        send_to = res['Email']
+
+        if IMAP.create_draft(message, subject, send_to):
+            res['Email_draft'] = True
+        else:
+            res['Email_draft'] = False
+
+    except Exception as e:
+        res['Email_draft'] = False
+        res['Email_draft_Error_Message'] = str(e)
+

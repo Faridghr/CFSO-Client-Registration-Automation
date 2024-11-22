@@ -228,6 +228,7 @@ class IMAP():
     @classmethod
     def validator(clf, payerName: str, amount, days=21):
         """
+        Function to validate if the given name matches with the email recieved by Interact E-transfer.
         Args:
             name (String): The name for validations.
             amount (String): amount to check for validations.
@@ -245,6 +246,24 @@ class IMAP():
                 clf.add_unique_rows_to_csv(data_from_email)
                 result = clf.validate_reference_by_name(payerName, amount)
             return result
+
+
+    @classmethod
+    def create_draft(clf, message, subject, send_to):
+        """
+        Creates a draft email in the Sponsor Email system when an error is found in the form submission.
+
+        Args:
+            message (str): The content of the email.
+            subject (str): The subject of the email.
+            send_to (str): The recipient's email address.
+
+        Returns:
+            dict: A dictionary containing the status of the draft creation.
+                - status (bool): True if the draft was created successfully, False otherwise.
+        """
+        pass
+
 
 
 if __name__ == "__main__":

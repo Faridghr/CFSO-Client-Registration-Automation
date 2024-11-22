@@ -2,7 +2,7 @@ from flask import request, jsonify
 from services.jotForm.request_processor import process_request_data
 from services.validation.pr_card_validator import validate_pr_card
 from services.validation.e_transfer_validator import validate_e_transfer
-from services.email.email_service import send_email
+from services.email.email_service import send_email, create_email_draft
 from services.database.mongodb import save_to_mongodb
 
 import json
@@ -45,6 +45,10 @@ def validate_route(mail, collection):
 
         # Send email
         send_email(res.get('PR_Status'), mail, res)
+
+        # Generate a professional email draft in Sponsor email to inform a customer about issues with their course registration submitted
+        # if res['PR_Success'] == False or res['E_Transfer_Success'] == False:
+        #     create_email_draft(res)
 
         print(res) #TEST
 
