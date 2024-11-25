@@ -19,11 +19,12 @@ def validate_e_transfer(payer_full_name, amount_of_payment, e_transfer_file_uplo
         return result
 
     validation = check_eTransfer(payer_full_name, amount_of_payment, e_transfer_file_upload_urls[0])
+
     if validation['success']:
         result['E_Transfer_Success'] = True
     else:
         result['E_Transfer_Success'] = False
-        result['E_Transfer_Error'] = validation['error']
+        result['E_Transfer_Error'] = validation['message']
 
     return result
 
@@ -41,19 +42,19 @@ def check_eTransfer(payerFullName, amount, imgURL):
     - 'E_Transfer_Error' (str, optional): Error message if validation fails.
     """
     
-    json_res = image_To_Text(imgURL)
+    # json_res = image_To_Text(imgURL)
 
     #payer_name_list = [name.upper() for name in payerFullName.split(' ')]
 
-    reference_number_list = []
-    reference_pattern = re.compile(r"\b[A-Za-z0-9]{12}\b")
+    # reference_number_list = []
+    # reference_pattern = re.compile(r"\b[A-Za-z0-9]{12}\b")
 
-    for entry in json_res:
-        text = entry["text"]
-        # Check for 12-character alphanumeric reference pattern
-        if reference_pattern.match(text):
-            reference_number_list.append(text)
-    print("E-Transfer Refrence number: ", reference_number_list)
+    # for entry in json_res:
+    #     text = entry["text"]
+    #     # Check for 12-character alphanumeric reference pattern
+    #     if reference_pattern.match(text):
+    #         reference_number_list.append(text)
+    # print("E-Transfer Refrence number: ", reference_number_list)
 
     res = IMAP.validator(payerFullName, amount)
     

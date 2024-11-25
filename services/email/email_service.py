@@ -53,6 +53,7 @@ def create_email_message(pr_status, res):
         """
         recipients = res['Email']
         subject = 'Registration Confirmation: Welcome to Our Course!'
+
     else:
         errors = []
         if not res.get('PR_Success', True):
@@ -61,6 +62,7 @@ def create_email_message(pr_status, res):
             errors.append(res.get('E_Transfer_Error', 'E-transfer validation failed'))
 
         error_message = ' / '.join(errors)
+
         email_body = f"""
         Dear [Sponsor's Name / Organization's Name],
 

@@ -50,7 +50,7 @@ def validate_route(mail, collection):
         # if res['PR_Success'] == False or res['E_Transfer_Success'] == False:
         #     create_email_draft(res)
 
-        print(res) #TEST
+        # print(res) #TEST
 
         # Save to MongoDB
         save_result = save_to_mongodb(collection, res)

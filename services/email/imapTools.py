@@ -194,7 +194,6 @@ class IMAP():
 
 
         best_match = process.extractOne(name, df_unused['Sent_From'], scorer=fuzz.token_set_ratio)
-        print(best_match[0])
         amount = clf.clean_amount(amount)
 
         if best_match and best_match[1] >= 95:  # Threshold for a good match
@@ -221,8 +220,8 @@ class IMAP():
                 return {'success': False, "message": f"Names didn't match. Expected: {df_unused['Sent_From']}, Found: {best_match[0]}."}
 
         else:
-            logging.warning(f"No matching name found for {name}.")
-            return {'success': False, "message": f"No matching name found for {name}."}
+            logging.warning(f"No payment found for {name}.")
+            return {'success': False, "message": f"No payment found for {name}."}
         
 
     @classmethod
