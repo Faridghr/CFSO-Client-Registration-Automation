@@ -33,13 +33,11 @@ def create_email_message(pr_status, res):
 
     :return Message: An email message object with the appropriate subject, recipients, and body.
     """
-    if pr_status and res['PR_Success'] and res['E_Transfer_Success']:
+    if (pr_status and res['PR_Success'] and res['E_Transfer_Success']) or (not pr_status and res['E_Transfer_Success']):
         email_body = f"""
         Dear {res['Full_Name']},
 
         Thank you for registering for our course! Here are your registration details:
-        - PR card validation Success: {res['PR_Success']}
-        - E-transfer validation Success: {res['E_Transfer_Success']}
         - Form ID: {res['Form_ID']}
         - Submission ID: {res['Submission_ID']}
         - Full Name: {res['Full_Name']}
@@ -49,22 +47,26 @@ def create_email_message(pr_status, res):
         We look forward to seeing you in the course!
 
         Best regards,
-        [Organization's Name]
+        The Community Family Services of Ontario (CFSO)
         """
         recipients = res['Email']
         subject = 'Registration Confirmation: Welcome to Our Course!'
-
+        
     else:
         errors = []
-        if not res.get('PR_Success', True):
+
+        if res.get('PR_Success', True) == False:
+            print("I AM HERE!!!")
             errors.append(res.get('PR_Error', 'PR validation failed'))
-        if not res.get('E_Transfer_Success', True):
+
+        if res.get('E_Transfer_Success', True) == False:
+            print("I AM HERE!!!")
             errors.append(res.get('E_Transfer_Error', 'E-transfer validation failed'))
 
         error_message = ' / '.join(errors)
 
         email_body = f"""
-        Dear [Sponsor's Name / Organization's Name],
+        Dear CFSO,
 
         An error occurred during form submission:
         - Errors: {error_message}
