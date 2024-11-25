@@ -1,8 +1,12 @@
 Flask
-pymongo
+Flask-Mail
 requests
 beautifulsoup4
 python-dotenv
-Flask-Mail
 Pillow
 imap-tools
+boto3
+thefuzz
+pandas
+pymongo
+openai
