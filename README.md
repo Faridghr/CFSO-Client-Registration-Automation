@@ -1,4 +1,4 @@
-# CFSO-Client-Registration-Automation
+# Client-Registration-Automation
 
 This project is designed to automate and streamline the client registration process for a organization. The organization, which currently uses **JotForm** for course registration, faces inefficiencies due to manual tasks such as verifying **Permanent Residency (PR) cards** and reviewing **e-transfer payment screenshots**. These time-consuming steps require significant staff resources, leading to delays and potential errors. This project addresses these challenges by developing a solution to **automate** these manual processes, ensuring accuracy and improving operational efficiency.
 
