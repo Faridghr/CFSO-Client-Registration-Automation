@@ -214,7 +214,7 @@ class IMAP():
                     return {'success': True, "message": "Record found and validated successfully."}
                 else:
                     # logging.warning(f"Amount mismatch for {name}. Expected: {amount}, Found: {df.loc[matching_index, 'Amount']}.")
-                    return {'success': False, "message": f"Amount mismatch. Expected: {amount}, Found: {df.loc[matching_index, 'Amount']}."}
+                    return {'success': False, "message": f"Payment amount mismatch. Expected: {amount}, Found: {df.loc[matching_index, 'Amount']}."}
              else:
                 # logging.warning(f"Amount mismatch for {name}. Expected: {amount}, Found: {df.loc[matching_index, 'Amount']}.")
                 return {'success': False, "message": f"Names didn't match. Expected: {df_unused['Sent_From']}, Found: {best_match[0]}."}
