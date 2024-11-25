@@ -1,13 +1,15 @@
 # CFSO-Client-Registration-Automation
 
-This project focuses on automating the client registration process for the Community Family Services of Ontario (CFSO), a non-profit organization serving East Asian-Ontarians. The existing manual workflow involves verifying Permanent Residency (PR) cards and e-transfer payment screenshots, taking up significant staff time. The proposed solution aims to streamline and automate these processes, reducing staff involvement while maintaining efficiency. Key deliverables include a system to handle registration, PR card verification, payment verification, and automated communication with both staff and clients. The project is planned for completion by November 2024 in three phases: process analysis, proof of concept, and system development.
+This project is designed to automate and streamline the client registration process for a organization. The organization, which currently uses **JotForm** for course registration, faces inefficiencies due to manual tasks such as verifying **Permanent Residency (PR) cards** and reviewing **e-transfer payment screenshots**. These time-consuming steps require significant staff resources, leading to delays and potential errors. This project addresses these challenges by developing a solution to **automate** these manual processes, ensuring accuracy and improving operational efficiency.
 
-## Features
-- Automates form submission validation.
-- Validates Permanent Residency (PR) card images using OCR.
-- Extracts and compares e-transfer payment details with form submissions.
-- Sends email notifications for both successful and failed validations.
-- Stores form submission data in a MongoDB database for further analysis.
+## Key Features and Objectives
+1. **JotForm Integration & Automation:** Automating the validation and management of client registration data submitted through JotForm forms. This ensures that data is processed quickly and accurately, reducing manual data entry and the risk of errors.
+
+2. **PR Card Verification:** Incorporating machine learning techniques to automatically verify the authenticity of PR cards. This feature will eliminate the need for staff to manually review each PR card, improving verification speed and accuracy.
+
+3. **Payment Screenshot Validation:** Automating the process of verifying e-transfer payment screenshots submitted by clients. The system will use image recognition or other verification methods to check payment details and ensure that clients’ payments are legitimate.
+
+4. **Automated Communication:** Implementing automated notifications for both staff and clients to ensure timely updates throughout the registration process. This reduces communication overhead and ensures that clients and staff are always informed.
 
 ## Routes
 ### [POST] /
