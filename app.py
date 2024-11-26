@@ -29,6 +29,7 @@ client = MongoClient(
 )
 db = client['webhook_db'] 
 collection = db['webhook_data'] 
+collection.create_index({"created_at": 1}, expireAfterSeconds=2592000)  # 30 days in seconds
 
 
 
