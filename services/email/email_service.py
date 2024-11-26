@@ -56,11 +56,9 @@ def create_email_message(pr_status, res):
         errors = []
 
         if res.get('PR_Success', True) == False:
-            print("I AM HERE!!!")
             errors.append(res.get('PR_Error', 'PR validation failed'))
 
         if res.get('E_Transfer_Success', True) == False:
-            print("I AM HERE!!!")
             errors.append(res.get('E_Transfer_Error', 'E-transfer validation failed'))
 
         error_message = ' / '.join(errors)
