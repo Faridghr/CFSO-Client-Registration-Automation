@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 def save_to_mongodb(collection, data):
     """
@@ -10,7 +10,7 @@ def save_to_mongodb(collection, data):
     """
 
     # Add a timestamp for TTL
-    data['created_at'] = datetime.utcnow()
+    data['created_at'] = datetime.now(timezone.utc)  # Use timezone-aware UTC datetime
 
     result = collection.insert_one(data)
     return {
