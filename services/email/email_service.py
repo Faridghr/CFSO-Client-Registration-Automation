@@ -1,6 +1,8 @@
 from flask_mail import Message
 from services.openai.openai import OpenAIService
-from services.email.imapTools import IMAP
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import imaplib
 from config import Config
 
 error_notification_email_address = Config.ERROR_NOTIFICATION_EMAIL_RECIEVER
@@ -117,11 +119,11 @@ def create_email_draft(res):
         3. jleung@cfso.care
         Ensure the output is clear, concise, and customer-friendly. Output only the email content message without "subject" section.
         """
-        message = OpenAIService.generate_completion(prompt)
+        body = OpenAIService.generate_completion(prompt)
         subject = "Action Required: Issue with Your Course Registration Form"
-        send_to = res['Email']
+        recipient = res['Email']
 
-        if IMAP.create_draft(message, subject, send_to):
+        if create_draft(body, subject, recipient):
             res['Email_draft'] = True
         else:
             res['Email_draft'] = False
@@ -129,4 +131,49 @@ def create_email_draft(res):
     except Exception as e:
         res['Email_draft'] = False
         res['Email_draft_Error_Message'] = str(e)
+
+
+def create_draft(body, subject, recipient):
+    """
+    Creates a draft email in the Sponsor Email system when an error is found in the form submission.
+
+    Args:
+        message (str): The content of the email.
+        subject (str): The subject of the email.
+        send_to (str): The recipient's email address.
+        mail (Flask-Mail Object)
+
+    Returns:
+        dict: A dictionary containing the status of the draft creation.
+            - status (bool): True if the draft was created successfully, False otherwise.
+    """
+ 
+    # We should convert the meassage into MIME
+    mime_msg = MIMEMultipart()
+    mime_msg['From'] = Config.CONFIRMATION_SENDER_EMAIL
+    mime_msg['To'] = recipient
+    mime_msg['Subject'] = subject
+    mime_msg.attach(MIMEText(body, 'plain'))
+ 
+    raw_message = mime_msg.as_bytes()
+ 
+    try:
+        mailbox = imaplib.IMAP4_SSL('imap.gmail.com',)
+        mailbox.login(Config.CONFIRMATION_SENDER_EMAIL, Config.CONFIRMATION_SENDER_EMAIL_APP_PASSWORD)
+        mailbox.select('"[Gmail]/Drafts"')
+        res = mailbox.append(
+            '"[Gmail]/Drafts"',
+            '\\Draft',
+            None,
+            raw_message
+        )
+        mailbox.logout()
+        print({"Email_draft_status" :True ,'message': res})
+ 
+        return True 
+   
+    except Exception as e:
+        print({"Email_draft_status" :False,'error': str(e)})
+        return False
+    
 

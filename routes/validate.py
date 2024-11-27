@@ -47,8 +47,8 @@ def validate_route(mail, collection):
         send_email(res.get('PR_Status'), mail, res)
 
         # Generate a professional email draft in Sponsor email to inform a customer about issues with their course registration submitted
-        # if res['PR_Success'] == False or res['E_Transfer_Success'] == False:
-        #     create_email_draft(res)
+        if res['PR_Success'] == False or res['E_Transfer_Success'] == False:
+            create_email_draft(res)
 
         # print(res) #TEST
 
