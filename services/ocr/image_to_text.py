@@ -37,6 +37,27 @@ def image_To_Text_Local_Model(imgURL):
     return r.json()
 
 
+def image_To_Text_aws_textract(imgURL):
+    """
+    Converts the image at img_url to text using aws texteract.
+    """
+    textract = boto3.client(
+        'textract',
+        aws_access_key_id=Config.AWS_ACCESS_KEY,
+        aws_secret_access_key=Config.AWS_SECRET_KEY,
+        region_name='us-east-1'
+    )
+
+    image = get_image_from_url(imgURL)
+
+    response = textract.detect_document_text(
+        Document={'Bytes': image}
+    )
+    
+    result = [{'text': word} for block in response['Blocks'] if block['BlockType'] == 'LINE'
+              for word in block.get('Text', '').split()]
+   
+    return result
 
 
 # url = 'https://www.jotform.com/uploads/javanroodiz/243138058138255/6070135805971446099/card.jpg'
