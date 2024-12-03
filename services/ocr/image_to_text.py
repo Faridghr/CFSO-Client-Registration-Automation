@@ -2,6 +2,8 @@ import requests
 from dotenv import load_dotenv
 import os
 from services.jotForm.get_image import get_image_from_url
+import boto3
+from config import Config
 
 ninja_api_key = os.getenv('NINJA_API_KEY')
 
