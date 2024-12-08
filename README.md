@@ -2,6 +2,10 @@
 
 This project is designed to automate and streamline the client registration process for a organization. The organization, which currently uses **JotForm** for course registration, faces inefficiencies due to manual tasks such as verifying **Permanent Residency (PR) cards** and reviewing **e-transfer payment screenshots**. These time-consuming steps require significant staff resources, leading to delays and potential errors. This project addresses these challenges by developing a solution to **automate** these manual processes, ensuring accuracy and improving operational efficiency.
 
+![ProjectStructure](png/ProjectStructure.png)
+
+---
+
 ## Key Features and Objectives
 1. **JotForm Integration & Automation:** Automating the validation and management of client registration data submitted through JotForm forms. This ensures that data is processed quickly and accurately, reducing manual data entry and the risk of errors.
 
