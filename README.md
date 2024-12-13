@@ -1,6 +1,6 @@
 # Client-Registration-Automation
 
-This project is designed to automate and streamline the client registration process for a organization. The organization, which currently uses **JotForm** for course registration, faces inefficiencies due to manual tasks such as verifying **Permanent Residency (PR) cards** and reviewing **e-transfer payment screenshots**. These time-consuming steps require significant staff resources, leading to delays and potential errors. This project addresses these challenges by developing a solution to **automate** these manual processes, ensuring accuracy and improving operational efficiency.
+This project is designed to automate and streamline the client registration process for a organization. The organization, which currently uses **JotForm** for course registration, faces inefficiencies due to manual tasks such as verifying **cards** and reviewing **e-transfer payment screenshots**. These time-consuming steps require significant staff resources, leading to delays and potential errors. This project addresses these challenges by developing a solution to **automate** these manual processes, ensuring accuracy and improving operational efficiency.
 
 ![ProjectStructure](png/ProjectStructure.png)
 
@@ -9,7 +9,7 @@ This project is designed to automate and streamline the client registration proc
 ## Key Features and Objectives
 1. **JotForm Integration & Automation:** Automating the validation and management of client registration data submitted through JotForm forms. This ensures that data is processed quickly and accurately, reducing manual data entry and the risk of errors.
 
-2. **PR Card Verification:** Incorporating machine learning techniques to automatically verify the authenticity of PR cards. This feature will eliminate the need for staff to manually review each PR card, improving verification speed and accuracy.
+2. **Card Verification:** Incorporating machine learning techniques to automatically verify the authenticity of PR cards. This feature will eliminate the need for staff to manually review each PR card, improving verification speed and accuracy.
 
 3. **Payment Screenshot Validation:** Automating the process of verifying e-transfer payment screenshots submitted by clients. The system will use image recognition or other verification methods to check payment details and ensure that clients’ payments are legitimate.
 
